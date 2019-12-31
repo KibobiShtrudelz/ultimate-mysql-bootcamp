@@ -1,3 +1,5 @@
+DROP DATABASE books_app;
+
 CREATE DATABASE books_app;
 
 USE books_app;
