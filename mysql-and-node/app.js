@@ -25,9 +25,36 @@ const connection = mysql.createConnection({
 // });
 
 // INSERTING DATA 2
-const person = { email: faker.internet.email() };
+// const person = { email: faker.internet.email() };
 
-connection.query("INSERT INTO users SET ?", person, function(err, result) {
+// connection.query("INSERT INTO users SET ?", person, function(err, result) {
+// 	if (err) throw err;
+// 	console.log(result);
+// });
+
+// const person = {
+// 	email: faker.internet.email(),
+// 	created_at: faker.date.past()
+// };
+
+// const end_result = connection.query("INSERT INTO users SET?", person, function(err, result) {
+// 	if (err) throw err;
+// 	console.log(result);
+// });
+
+// INSERTING LOTS OF DATA!!!===============================
+const data = [];
+
+for(let i = 0; i < 500; i++) {
+	data.push([
+		faker.internet.email(),
+		faker.date.past()
+	]);
+}
+
+const q = "INSERT INTO users (email, created_at) VALUES ?";
+
+connection.query(q, [data], function(err, result) {
 	if (err) throw err;
 	console.log(result);
 });
